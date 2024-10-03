@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import {
   ImageBackground,
   View,
@@ -5,9 +6,10 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { Button, Card, Text, TextInput, Title } from "react-native-paper";
+import { Button, Card, Text, TextInput } from "react-native-paper";
 
 export default function Login() {
+  const router = useRouter();
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground
@@ -33,13 +35,13 @@ export default function Login() {
                 }}
               >
                 <Text variant="bodySmall">don't have an account yet ?</Text>
-                <Button mode="text">Register</Button>
+                <Button mode="text" onPress={() => router.push("/register")}>
+                  Register
+                </Button>
               </View>
             </Card.Content>
             <Card.Actions>
-              <Button mode="contained" onPress={() => console.log("Pressed")}>
-                Log in
-              </Button>
+              <Button mode="contained">Log in</Button>
             </Card.Actions>
           </Card>
         </View>
