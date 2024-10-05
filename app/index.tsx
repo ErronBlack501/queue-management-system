@@ -1,3 +1,4 @@
+import LoginForm from "@/components/LoginForm";
 import { useRouter } from "expo-router";
 import {
   ImageBackground,
@@ -5,6 +6,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  StatusBar,
 } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
 
@@ -17,6 +19,7 @@ export default function Login() {
         resizeMode="cover"
         style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
       >
+        <StatusBar hidden />
         <View style={styles.container}>
           <Card mode="elevated" style={styles.card}>
             <Card.Title
@@ -25,24 +28,8 @@ export default function Login() {
               titleStyle={{ textAlign: "center" }}
             />
             <Card.Content>
-              <TextInput mode="outlined" label="Username" />
-              <TextInput mode="outlined" label="Password" secureTextEntry />
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
-              >
-                <Text variant="bodySmall">don't have an account yet ?</Text>
-                <Button mode="text" onPress={() => router.push("/register")}>
-                  Register
-                </Button>
-              </View>
+              <LoginForm />
             </Card.Content>
-            <Card.Actions>
-              <Button mode="contained">Log in</Button>
-            </Card.Actions>
           </Card>
         </View>
       </ImageBackground>

@@ -1,3 +1,4 @@
+import RegisterForm from "@/components/RegisterForm";
 import { useRouter } from "expo-router";
 import {
   ImageBackground,
@@ -5,11 +6,12 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  StatusBar,
 } from "react-native";
 import { Button, Card, Text, TextInput } from "react-native-paper";
 
 export default function Register() {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground
@@ -17,6 +19,7 @@ export default function Register() {
         resizeMode="cover"
         style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
       >
+        <StatusBar hidden />
         <View style={styles.container}>
           <Card mode="elevated" style={styles.card}>
             <Card.Title
@@ -25,24 +28,8 @@ export default function Register() {
               titleStyle={{ textAlign: "center" }}
             />
             <Card.Content>
-              <TextInput mode="outlined" label="Username" />
-              <TextInput mode="outlined" label="Password" secureTextEntry />
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
-              >
-                <Text variant="bodySmall">already have an account ?</Text>
-                <Button mode="text" onPress={() => router.back()}>Log in</Button>
-              </View>
+              <RegisterForm />
             </Card.Content>
-            <Card.Actions>
-              <Button mode="contained" onPress={() => console.log("Pressed")}>
-                Sign up
-              </Button>
-            </Card.Actions>
           </Card>
         </View>
       </ImageBackground>
@@ -58,7 +45,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 300,
-    height: 300,
+    height: "auto",
     margin: 10,
     backgroundColor: "white", // Couleur de fond opaque
     borderWidth: 1,
