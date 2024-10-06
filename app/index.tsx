@@ -1,5 +1,4 @@
 import LoginForm from "@/components/LoginForm";
-import { useRouter } from "expo-router";
 import {
   ImageBackground,
   View,
@@ -8,10 +7,9 @@ import {
   Keyboard,
   StatusBar,
 } from "react-native";
-import { Button, Card, Text, TextInput } from "react-native-paper";
+import { Card } from "react-native-paper";
 
 export default function Login() {
-  const router = useRouter();
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground

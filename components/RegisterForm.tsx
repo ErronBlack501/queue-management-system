@@ -2,7 +2,9 @@ import { View } from "react-native";
 import { Formik } from "formik";
 import { TextInput, Text, Button } from "react-native-paper";
 import { router } from "expo-router";
+import * as Device from "expo-device";
 import * as yup from "yup";
+import { useEffect, useState } from "react";
 
 const RegisterSchema = yup.object({
   firstname: yup
@@ -21,17 +23,37 @@ const RegisterSchema = yup.object({
     .string()
     .min(8, "Password must be at least 8 characters long")
     .required("Password is required"),
+  password_confirmation: yup
+    .string()
+    .oneOf([yup.ref("password")], "Les mots de passe doivent correspondre")
+    .required("Confirmation du mot de passe requise"),
 });
 
 const RegisterForm = () => {
+  const [deviceName, setDeviceName] = useState("");
+
+  useEffect(() => {
+    const fetchDeviceName = async () => {
+      const name = await Device.deviceName;
+      if (name !== null) setDeviceName(name);
+    };
+
+    fetchDeviceName();
+  }, []);
   return (
     <View>
       <Formik
-        initialValues={{ firstname: "", lastname: "", email: "", password: "" }}
+        initialValues={{
+          firstname: "",
+          lastname: "",
+          email: "",
+          password: "",
+          password_confirmation: "",
+        }}
         validationSchema={RegisterSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
-          console.log(values);
+          console.log({ ...values, device_name: deviceName });
         }}
       >
         {(props) => (
@@ -67,6 +89,14 @@ const RegisterForm = () => {
                 secureTextEntry
                 onChangeText={props.handleChange("password")}
                 value={props.values.password}
+              />
+              <TextInput
+                mode="outlined"
+                placeholder="Confirm your password"
+                label="Password confirmation"
+                secureTextEntry
+                onChangeText={props.handleChange("password_confirmation")}
+                value={props.values.password_confirmation}
               />
             </View>
             <View
