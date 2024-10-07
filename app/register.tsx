@@ -8,10 +8,11 @@ import {
   Keyboard,
   StatusBar,
 } from "react-native";
-import { Button, Card, Text, TextInput } from "react-native-paper";
+import { Card } from "react-native-paper";
+import { ms, s, vs } from "react-native-size-matters";
 
 export default function Register() {
-  const router = useRouter();
+  const styles = useStyles();
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground
@@ -24,7 +25,7 @@ export default function Register() {
           <Card mode="elevated" style={styles.card}>
             <Card.Title
               title="Register"
-              titleVariant={"titleLarge"}
+              titleVariant={"displaySmall"}
               titleStyle={{ textAlign: "center" }}
             />
             <Card.Content>
@@ -37,18 +38,21 @@ export default function Register() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  card: {
-    width: 300,
-    height: "auto",
-    margin: 10,
-    backgroundColor: "white", // Couleur de fond opaque
-    borderWidth: 1,
-    borderColor: "white",
-  },
-});
+function useStyles() {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    card: {
+      margin: ms(10),
+      width: s(300),
+      height: vs(250),
+      justifyContent: "center",
+      backgroundColor: "white", // Couleur de fond opaque
+      borderWidth: 1,
+      borderColor: "white",
+    },
+  });
+}

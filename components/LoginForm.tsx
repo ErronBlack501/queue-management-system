@@ -32,6 +32,7 @@ const LoginForm = () => {
               <TextInput
                 mode="outlined"
                 keyboardType="email-address"
+                style={{ fontSize: ms(10) }}
                 inputMode="email"
                 label="Email"
                 placeholder="Enter your email address"
@@ -44,6 +45,7 @@ const LoginForm = () => {
                   variant="bodySmall"
                   style={{
                     textAlign: "right",
+                    fontSize: ms(10),
                     color: "blue",
                     paddingTop: ms(4),
                   }}
@@ -54,6 +56,7 @@ const LoginForm = () => {
 
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 placeholder="Enter your password"
                 label="Password"
                 secureTextEntry

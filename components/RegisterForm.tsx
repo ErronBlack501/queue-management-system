@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import * as Device from "expo-device";
 import * as yup from "yup";
 import { useEffect, useState } from "react";
+import { ms } from "react-native-size-matters";
 
 const RegisterSchema = yup.object({
   firstname: yup
@@ -111,7 +112,11 @@ const RegisterForm = () => {
                 Log in
               </Button>
             </View>
-            <Button mode="contained" onPress={props.handleSubmit}>
+            <Button
+              mode="contained"
+              labelStyle={{ fontSize: ms(10) }}
+              onPress={props.handleSubmit}
+            >
               Sign up
             </Button>
           </>
