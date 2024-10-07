@@ -6,8 +6,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   StatusBar,
-  useWindowDimensions,
 } from "react-native";
+import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import { Card } from "react-native-paper";
 
 export default function Login() {
@@ -26,7 +26,7 @@ export default function Login() {
             <Card.Title
               title="Login"
               style={{ alignItems: "flex-start" }}
-              titleVariant={"titleLarge"}
+              titleVariant={"displaySmall"}
               titleStyle={{ textAlign: "center" }}
             />
             <Card.Content>
@@ -40,7 +40,6 @@ export default function Login() {
 }
 
 function useStyles() {
-  const { width, height } = useWindowDimensions();
   return StyleSheet.create({
     container: {
       flex: 1,
@@ -48,10 +47,9 @@ function useStyles() {
       alignItems: "center",
     },
     card: {
-      flex: 0,
-      margin: 10,
-      width: width * 0.8,
-      height: height * 0.4,
+      margin: moderateScale(10),
+      width: scale(200),
+      height: verticalScale(200),
       justifyContent: "center",
       backgroundColor: "white", // Couleur de fond opaque
       borderWidth: 1,

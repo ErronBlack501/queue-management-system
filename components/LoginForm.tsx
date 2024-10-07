@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { TextInput, Text, Button } from "react-native-paper";
 import { router } from "expo-router";
 import * as yup from "yup";
-
+import { s, vs, ms } from "react-native-size-matters";
 const LoginSchema = yup.object({
   email: yup
     .string()
@@ -45,7 +45,7 @@ const LoginForm = () => {
                   style={{
                     textAlign: "right",
                     color: "blue",
-                    paddingTop: 4,
+                    paddingTop: ms(4),
                   }}
                 >
                   Forgot password ?
@@ -68,12 +68,22 @@ const LoginForm = () => {
                 flexDirection: "row",
               }}
             >
-              <Text variant="bodySmall">Don't have an account yet ?</Text>
-              <Button mode="text" onPress={() => router.push("/register")}>
+              <Text variant="bodySmall" style={{ fontSize: ms(10) }}>
+                Don't have an account yet ?
+              </Text>
+              <Button
+                mode="text"
+                labelStyle={{ fontSize: ms(10) }}
+                onPress={() => router.push("/register")}
+              >
                 Register
               </Button>
             </View>
-            <Button mode="contained" onPress={props.handleSubmit}>
+            <Button
+              mode="contained"
+              labelStyle={{ fontSize: ms(10) }}
+              onPress={props.handleSubmit}
+            >
               Log in
             </Button>
           </>
