@@ -24,6 +24,7 @@ const LoginForm = () => {
         onSubmit={(values, actions) => {
           actions.resetForm();
           console.log(values);
+          router.replace('/(auth)');
         }}
       >
         {(props) => (
@@ -47,7 +48,7 @@ const LoginForm = () => {
                     textAlign: "right",
                     fontSize: ms(10),
                     color: "blue",
-                    paddingTop: ms(4),
+                    paddingTop: ms(6),
                   }}
                 >
                   Forgot password ?
@@ -69,6 +70,7 @@ const LoginForm = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "row",
+                marginVertical: 2,
               }}
             >
               <Text variant="bodySmall" style={{ fontSize: ms(10) }}>

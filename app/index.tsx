@@ -48,7 +48,7 @@ function useStyles() {
     },
     card: {
       margin: moderateScale(10),
-      width: scale(200),
+      width: scale(250),
       height: verticalScale(200),
       justifyContent: "center",
       backgroundColor: "white", // Couleur de fond opaque
