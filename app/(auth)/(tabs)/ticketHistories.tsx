@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Queues = () => {
+const TicketHistories = () => {
   return (
     <View>
-      <Text>Queues</Text>
+      <Text>TicketHistories</Text>
     </View>
   )
 }
 
-export default Queues
+export default TicketHistories
