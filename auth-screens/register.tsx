@@ -1,4 +1,5 @@
-import LoginForm from "@/components/LoginForm";
+import RegisterForm from "@/components/RegisterForm";
+import { useRouter } from "expo-router";
 import {
   ImageBackground,
   View,
@@ -7,16 +8,15 @@ import {
   Keyboard,
   StatusBar,
 } from "react-native";
-import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import { Card } from "react-native-paper";
+import { ms, s, vs } from "react-native-size-matters";
 
-export default function Login() {
+export default function Register() {
   const styles = useStyles();
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ImageBackground
-        source={require("@/assets/app-images/loginImage.jpg")}
+        source={require("@/assets/app-images/registerImage.jpg")}
         resizeMode="cover"
         style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
       >
@@ -24,13 +24,12 @@ export default function Login() {
         <View style={styles.container}>
           <Card mode="elevated" style={styles.card}>
             <Card.Title
-              title="Login"
-              style={{ alignItems: "flex-start" }}
+              title="Register"
               titleVariant={"displaySmall"}
               titleStyle={{ textAlign: "center" }}
             />
             <Card.Content>
-              <LoginForm />
+              <RegisterForm />
             </Card.Content>
           </Card>
         </View>
@@ -47,9 +46,9 @@ function useStyles() {
       alignItems: "center",
     },
     card: {
-      margin: moderateScale(10),
-      width: scale(200),
-      height: verticalScale(200),
+      margin: ms(10),
+      width: s(300),
+      height: vs(250),
       justifyContent: "center",
       backgroundColor: "white", // Couleur de fond opaque
       borderWidth: 1,

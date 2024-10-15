@@ -1,10 +1,9 @@
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { Formik } from "formik";
 import { TextInput, Text, Button } from "react-native-paper";
 import { router } from "expo-router";
-import * as Device from "expo-device";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
+import { ms } from "react-native-size-matters";
 
 const RegisterSchema = yup.object({
   firstname: yup
@@ -26,20 +25,10 @@ const RegisterSchema = yup.object({
   password_confirmation: yup
     .string()
     .oneOf([yup.ref("password")], "Les mots de passe doivent correspondre")
-    .required("Confirmation du mot de passe requise"),
+    .required("Password confirmation is required"),
 });
 
 const RegisterForm = () => {
-  const [deviceName, setDeviceName] = useState("");
-
-  useEffect(() => {
-    const fetchDeviceName = async () => {
-      const name = await Device.deviceName;
-      if (name !== null) setDeviceName(name);
-    };
-
-    fetchDeviceName();
-  }, []);
   return (
     <View>
       <Formik
@@ -53,7 +42,10 @@ const RegisterForm = () => {
         validationSchema={RegisterSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
-          console.log({ ...values, device_name: deviceName });
+          console.log({
+            ...values,
+            device_name: Platform.OS + Platform.Version,
+          });
         }}
       >
         {(props) => (
@@ -61,6 +53,7 @@ const RegisterForm = () => {
             <View>
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 label="First name"
                 placeholder="Enter your first name"
                 onChangeText={props.handleChange("firstname")}
@@ -68,6 +61,7 @@ const RegisterForm = () => {
               />
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 label="Last name"
                 placeholder="Enter your last name"
                 onChangeText={props.handleChange("lastname")}
@@ -75,6 +69,7 @@ const RegisterForm = () => {
               />
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 keyboardType="email-address"
                 inputMode="email"
                 label="Email"
@@ -84,6 +79,7 @@ const RegisterForm = () => {
               />
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 placeholder="Enter your password"
                 label="Password"
                 secureTextEntry
@@ -92,6 +88,7 @@ const RegisterForm = () => {
               />
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 placeholder="Confirm your password"
                 label="Password confirmation"
                 secureTextEntry
@@ -106,12 +103,22 @@ const RegisterForm = () => {
                 flexDirection: "row",
               }}
             >
-              <Text variant="bodySmall">Already have an account ?</Text>
-              <Button mode="text" onPress={() => router.back()}>
+              <Text variant="bodySmall" style={{ fontSize: ms(10) }}>
+                Already have an account ?
+              </Text>
+              <Button
+                mode="text"
+                labelStyle={{ fontSize: ms(10) }}
+                onPress={() => router.back()}
+              >
                 Log in
               </Button>
             </View>
-            <Button mode="contained" onPress={props.handleSubmit}>
+            <Button
+              mode="contained"
+              labelStyle={{ fontSize: ms(10) }}
+              onPress={props.handleSubmit}
+            >
               Sign up
             </Button>
           </>

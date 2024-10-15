@@ -24,6 +24,7 @@ const LoginForm = () => {
         onSubmit={(values, actions) => {
           actions.resetForm();
           console.log(values);
+          router.replace('/(auth)');
         }}
       >
         {(props) => (
@@ -32,6 +33,7 @@ const LoginForm = () => {
               <TextInput
                 mode="outlined"
                 keyboardType="email-address"
+                style={{ fontSize: ms(10) }}
                 inputMode="email"
                 label="Email"
                 placeholder="Enter your email address"
@@ -44,8 +46,9 @@ const LoginForm = () => {
                   variant="bodySmall"
                   style={{
                     textAlign: "right",
+                    fontSize: ms(10),
                     color: "blue",
-                    paddingTop: ms(4),
+                    paddingTop: ms(6),
                   }}
                 >
                   Forgot password ?
@@ -54,6 +57,7 @@ const LoginForm = () => {
 
               <TextInput
                 mode="outlined"
+                style={{ fontSize: ms(10) }}
                 placeholder="Enter your password"
                 label="Password"
                 secureTextEntry
@@ -66,6 +70,7 @@ const LoginForm = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 flexDirection: "row",
+                marginVertical: 2,
               }}
             >
               <Text variant="bodySmall" style={{ fontSize: ms(10) }}>
