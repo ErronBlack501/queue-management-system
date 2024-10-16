@@ -1,40 +1,76 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { DataTable, IconButton, MD3Colors, Text } from "react-native-paper";
 
 const Service = () => {
-  const [page, setPage] = useState<number>(0);
-  const [numberOfItemsPerPageList] = useState([2, 3, 4]);
-  const [itemsPerPage, onItemsPerPageChange] = useState(
-    numberOfItemsPerPageList[0]
-  );
-
   const [items] = useState([
     {
-      id: 1,
+      id: "1",
       serviceName: "TYTFUY",
       serviceDescription: "uiyfizaygfvyuvcezf",
       estimatedDuration: "10s",
     },
     {
-      id: 2,
+      id: "2",
       serviceName: "OIO",
       serviceDescription: 356,
       estimatedDuration: "1h",
     },
     {
-      id: 3,
+      id: "3",
       serviceName: "OJUGY",
       serviceDescription: 356,
       estimatedDuration: "30mins",
     },
     {
-      id: 4,
+      id: "4",
+      serviceName: "PIOHy",
+      serviceDescription: 356,
+      estimatedDuration: "null",
+    },
+    {
+      id: "5",
+      serviceName: "PIOHy",
+      serviceDescription: 356,
+      estimatedDuration: "null",
+    },
+    {
+      id: "6",
+      serviceName: "PIOHy",
+      serviceDescription: 356,
+      estimatedDuration: "null",
+    },
+    {
+      id: "7",
+      serviceName: "PIOHy",
+      serviceDescription: 356,
+      estimatedDuration: "null",
+    },
+    {
+      id: "8",
+      serviceName: "PIOHy",
+      serviceDescription: 356,
+      estimatedDuration: "null",
+    },
+    {
+      id: "9",
+      serviceName: "PIOHy",
+      serviceDescription: 356,
+      estimatedDuration: "null",
+    },
+    {
+      id: "10",
       serviceName: "PIOHy",
       serviceDescription: 356,
       estimatedDuration: "null",
     },
   ]);
+
+  const [page, setPage] = useState<number>(0);
+  const [numberOfItemsPerPageList] = useState([2, 4, 6, 8, 10]);
+  const [itemsPerPage, onItemsPerPageChange] = useState(
+    numberOfItemsPerPageList[0]
+  );
 
   const from = page * itemsPerPage;
   const to = Math.min((page + 1) * itemsPerPage, items.length);
@@ -45,10 +81,22 @@ const Service = () => {
 
   return (
     <View style={styles.container}>
-      <Text variant="titleLarge" style={{ textAlign: "center" }}>
-        LIST OF SERVICE
-      </Text>
       <View style={styles.dataTableContainer}>
+        <View>
+          <IconButton
+            icon="plus"
+            style={{ borderWidth: 1, alignSelf: "center" }}
+            size={20}
+            onPress={() => console.log("Pressed")}
+          />
+          <Text
+            variant="titleLarge"
+            style={{ textAlign: "center", marginTop: 7 }}
+          >
+            LIST OF SERVICE
+          </Text>
+        </View>
+
         <DataTable>
           <DataTable.Header>
             <DataTable.Title>Id</DataTable.Title>
@@ -65,44 +113,47 @@ const Service = () => {
               Actions
             </DataTable.Title>
           </DataTable.Header>
-
-          {items.slice(from, to).map((item) => (
-            <DataTable.Row
-              onPress={() => console.log("Row pressed.")}
-              key={item.id}
-            >
-              <DataTable.Cell>{item.id}</DataTable.Cell>
-              <DataTable.Cell style={{ justifyContent: "center" }}>
-                {item.serviceName}
-              </DataTable.Cell>
-              <DataTable.Cell style={{ justifyContent: "center" }}>
-                {item.serviceDescription}
-              </DataTable.Cell>
-              <DataTable.Cell style={{ justifyContent: "center" }}>
-                {item.estimatedDuration}
-              </DataTable.Cell>
-              <DataTable.Cell style={{ justifyContent: "center" }}>
-                <IconButton
-                  icon="pencil"
-                  iconColor="#1E90FF"
-                  size={20}
-                  onPress={() => console.log("Pressed")}
-                />
-                <IconButton
-                  icon="eye"
-                  iconColor="#32CD32"
-                  size={20}
-                  onPress={() => console.log("Pressed")}
-                />
-                <IconButton
-                  icon="delete"
-                  iconColor={MD3Colors.error50}
-                  size={20}
-                  onPress={() => console.log("Pressed")}
-                />
-              </DataTable.Cell>
-            </DataTable.Row>
-          ))}
+          <FlatList
+            data={items.slice(from, to)}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <DataTable.Row
+                onPress={() => console.log("Row pressed.")}
+                key={item.id}
+              >
+                <DataTable.Cell>{item.id}</DataTable.Cell>
+                <DataTable.Cell style={{ justifyContent: "center" }}>
+                  {item.serviceName}
+                </DataTable.Cell>
+                <DataTable.Cell style={{ justifyContent: "center" }}>
+                  {item.serviceDescription}
+                </DataTable.Cell>
+                <DataTable.Cell style={{ justifyContent: "center" }}>
+                  {item.estimatedDuration}
+                </DataTable.Cell>
+                <DataTable.Cell style={{ justifyContent: "center" }}>
+                  <IconButton
+                    icon="pencil"
+                    iconColor="#1E90FF"
+                    size={20}
+                    onPress={() => console.log("Pressed")}
+                  />
+                  <IconButton
+                    icon="eye"
+                    iconColor="#32CD32"
+                    size={20}
+                    onPress={() => console.log("Pressed")}
+                  />
+                  <IconButton
+                    icon="delete"
+                    iconColor={MD3Colors.error50}
+                    size={20}
+                    onPress={() => console.log("Pressed")}
+                  />
+                </DataTable.Cell>
+              </DataTable.Row>
+            )}
+          />
 
           <DataTable.Pagination
             page={page}
@@ -128,7 +179,7 @@ const styles = StyleSheet.create({
   },
   dataTableContainer: {
     marginHorizontal: 8,
-    marginVertical: 10,
+    marginTop: 1,
     borderWidth: 1,
     borderRadius: 10,
   },
